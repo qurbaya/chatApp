@@ -8,18 +8,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\CreateUserRequest;
 use App\Http\Requests\Auth\SignUpRequest;
 use App\Http\Requests\Auth\VerifyPhoneRequest;
-use Illuminate\Http\Request;
 use Modules\Modules\Auth\Command\CreateSmsCodeCommand;
 use Modules\Modules\Auth\Command\CreateSmsCodeHandler;
 use Modules\Modules\Auth\Command\CreateUserCommand;
 use Modules\Modules\Auth\Command\CreateUserHandler;
 use Modules\Modules\Auth\Command\VerifySmsCodeCommand;
 use Modules\Modules\Auth\Command\VerifySmsCodeHandler;
-
+use Illuminate\Http\JsonResponse;
 class CreateAccountController extends Controller
 {
 
-    public function signUp(SignUpRequest $request, CreateSmsCodeHandler $handler): \Illuminate\Http\JsonResponse
+    public function signUp(SignUpRequest $request, CreateSmsCodeHandler $handler): JsonResponse
     {
         $handler->handle(
             new CreateSmsCodeCommand($request->get('phone'))
@@ -30,7 +29,7 @@ class CreateAccountController extends Controller
         ]);
     }
 
-    public function verifyPhone(VerifyPhoneRequest $request, VerifySmsCodeHandler $handler): \Illuminate\Http\JsonResponse
+    public function verifyPhone(VerifyPhoneRequest $request, VerifySmsCodeHandler $handler): JsonResponse
     {
         $handler->handle(new VerifySmsCodeCommand(
                 $request->get('phone'),
@@ -42,7 +41,7 @@ class CreateAccountController extends Controller
         ]);
     }
 
-    public function createUserAccount(CreateUserRequest $request, CreateUserHandler $handler): \Illuminate\Http\JsonResponse
+    public function createUserAccount(CreateUserRequest $request, CreateUserHandler $handler): JsonResponse
     {
         $handler->handle(
             new CreateUserCommand(

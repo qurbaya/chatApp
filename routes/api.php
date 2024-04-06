@@ -3,23 +3,25 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\CreateAccountController;
 use App\Http\Controllers\Chat\ChatController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
 
-Route::post('signUp',[CreateAccountController::class,'signUp']);
-Route::post('verifyPhone',[CreateAccountController::class,'verifyPhone']);
-Route::post('createUserAccount',[CreateAccountController::class,'createUserAccount']);
+Route::prefix('v1')->group(function () {
+    // Routes related to account creation
+    Route::post('signUp', [CreateAccountController::class, 'signUp'])->name('account.signUp');
+    Route::post('verifyPhone', [CreateAccountController::class, 'verifyPhone'])->name('account.verifyPhone');
+    Route::post('createUserAccount', [CreateAccountController::class, 'createUserAccount'])->name('account.createUser');
 
+    // Authentication route
+    Route::post('auth', [AuthController::class, 'auth'])->name('auth');
 
-
-Route::post('auth',[AuthController::class,'auth']);
-Route::get('list',[ChatController::class,'list'])->middleware('auth:api');
-Route::post('store',[ChatController::class,'store'])->middleware('auth:api');
-Route::get('show',[ChatController::class,'show'])->middleware('auth:api');
+    // Chat routes
+    Route::prefix('chat')->group(function () {
+        Route::get('list', [ChatController::class, 'list'])->name('chat.list');
+        Route::post('store', [ChatController::class, 'store'])->name('chat.store');
+        Route::get('show', [ChatController::class, 'show'])->name('chat.show');
+    });
+});
 
 Route::group(
     [

@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\AuthRequest;
-use Illuminate\Http\Request;
 use Modules\Modules\Auth\Query\AuthQuery;
 use Modules\Modules\Auth\Query\AuthQueryHandler;
 

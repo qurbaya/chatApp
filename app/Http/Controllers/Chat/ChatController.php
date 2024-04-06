@@ -10,7 +10,6 @@ use App\Http\Requests\Chat\ChatStoreRequest;
 use App\Http\Resources\Chat\ChatListResource;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Modules\Modules\Chat\Command\CreateChatCommand;
 use Modules\Modules\Chat\Command\CreateChatHandler;
