@@ -8,15 +8,15 @@ final readonly class AuthQuery
 {
 
     public function __construct(
-        private string $email,
+        private string $phone,
         private string $password,
     )
     {
     }
 
-    public function getEmail(): string
+    public function getPhone(): string
     {
-        return $this->email;
+        return $this->phone;
     }
 
     public function getPassword(): string

@@ -21,14 +21,14 @@ final readonly class AuthQueryHandler
      */
     public function handle(AuthQuery $query): array
     {
-        if (!$this->repository->find($query->getEmail(), $query->getPassword())) {
+        if (!$this->repository->find($query->getPhone(), $query->getPassword())) {
             throw new \DomainException('Email or password incorrect');
         }
 
         $client = $this->repository->passportClient();
 
         return $this->authService->oauth(
-            $query->getEmail(),
+            $query->getPhone(),
             $query->getPassword(),
             $client->id,
             $client->secret

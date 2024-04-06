@@ -19,7 +19,7 @@ class AuthController extends Controller
     public function auth(Request $request, AuthQueryHandler $handler): array
     {
         return $handler->handle(
-            new AuthQuery($request->get('email'),$request->get('password'))
+            new AuthQuery($request->get('phone'),$request->get('password'))
         );
     }
 }

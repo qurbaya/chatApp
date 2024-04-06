@@ -10,9 +10,10 @@ use Laravel\Passport\Client;
 final readonly class AuthRepository
 {
 
-    public function find(string $email, string $password): bool
+    public function find(string $phone, string $password): bool
     {
-        return Auth::attempt(['email' => $email, 'password' => $password]);
+
+        return Auth::attempt(['phone' => $phone, 'password' => $password]);
     }
 
     public function passportClient()

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Chat;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Chat\ChatListResource;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Modules\Modules\Chat\Command\CreateChatCommand;
@@ -39,12 +40,16 @@ class ChatController extends Controller
         ));
     }
 
-    public function store(Request $request, CreateChatHandler $handler): void
+    public function store(Request $request, CreateChatHandler $handler): JsonResponse
     {
         $handler->handle(new CreateChatCommand(
             auth()->id(),
             $request->get('receiverId'),
             $request->get('message')
         ));
+
+        return response()->json([
+            'message' => 'Успешно'
+        ]);
     }
 }
