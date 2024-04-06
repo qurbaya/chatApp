@@ -1,15 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Chat;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Chat\ChatListResource;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Modules\Modules\Chat\Command\CreateChatCommand;
 use Modules\Modules\Chat\Command\CreateChatHandler;
 use Modules\Modules\Chat\Query\ChatListQuery;
 use Modules\Modules\Chat\Query\ChatListQueryHandler;
+use Modules\Modules\Chat\Query\ChatShowQuery;
+use Modules\Modules\Chat\Query\ChatShowQueryHandler;
 
 class ChatController extends Controller
 {
@@ -24,6 +29,14 @@ class ChatController extends Controller
             ),
             $authId
         );
+    }
+
+    public function show(Request $request, ChatShowQueryHandler $handler): Collection
+    {
+        return $handler->handle(new ChatShowQuery(
+            auth()->id(),
+            (int)$request->get('receiverId')
+        ));
     }
 
     public function store(Request $request, CreateChatHandler $handler): void

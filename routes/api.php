@@ -13,6 +13,7 @@ Route::get('/user', function (Request $request) {
 Route::post('auth',[AuthController::class,'auth']);
 Route::get('list',[ChatController::class,'list'])->middleware('auth:api');
 Route::post('store',[ChatController::class,'store'])->middleware('auth:api');
+Route::get('show',[ChatController::class,'show'])->middleware('auth:api');
 
 Route::group(
     [

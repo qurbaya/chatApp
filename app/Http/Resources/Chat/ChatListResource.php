@@ -19,7 +19,7 @@ class ChatListResource extends JsonResource
 
     public function toArray(Request $request): array
     {
-        $chatInfo = $this->sender->id !== self::$authId ? $this->sender : $this->receiver;
+        $chatInfo = $this->sender['id'] !== self::$authId ? $this->sender : $this->receiver;
 
          return [
              'id'           => $this->id,

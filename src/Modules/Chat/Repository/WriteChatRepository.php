@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Modules\Chat\Repository;
 
 use App\Models\Message;
-use Illuminate\Support\Facades\DB;
 
 final readonly class WriteChatRepository
 {
