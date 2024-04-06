@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Chat\ChatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -10,7 +11,8 @@ Route::get('/user', function (Request $request) {
 
 
 Route::post('auth',[AuthController::class,'auth']);
-
+Route::get('list',[ChatController::class,'list'])->middleware('auth:api');
+Route::post('store',[ChatController::class,'store'])->middleware('auth:api');
 
 Route::group(
     [
