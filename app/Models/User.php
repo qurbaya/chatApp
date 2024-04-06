@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'phone',
         'password',
+        'phone_verified_at'
     ];
 
     /**
@@ -31,6 +32,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'phone_verified_at'
     ];
 
     /**
@@ -41,7 +43,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
+            'phone_verified_at' => 'datetime',
         ];
     }
 

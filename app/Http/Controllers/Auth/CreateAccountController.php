@@ -15,6 +15,7 @@ use Modules\Modules\Auth\Command\CreateUserHandler;
 use Modules\Modules\Auth\Command\VerifySmsCodeCommand;
 use Modules\Modules\Auth\Command\VerifySmsCodeHandler;
 use Illuminate\Http\JsonResponse;
+
 class CreateAccountController extends Controller
 {
 
