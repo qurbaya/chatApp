@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Modules\Match\Command;
 
-use Modules\Modules\Match\Repository\WriteReactionRepository;
 use Modules\Services\Amqp\RabbitMQService;
 
 final readonly class SendReactionHandler
 {
 
     public function __construct(
-        private WriteReactionRepository $repository,
         private RabbitMQService $rabbitmq
     )
     {

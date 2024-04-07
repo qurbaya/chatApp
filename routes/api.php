@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\CreateAccountController;
 use App\Http\Controllers\Chat\ChatController;
+use App\Http\Controllers\User\MatchController;
 use App\Http\Controllers\User\ReactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,10 @@ Route::prefix('v1')->group(function () {
         ->middleware('auth:api')
         ->group(function () {
             Route::post('reaction', ReactionController::class)->name('reaction.send');
+            Route::get('likes', [MatchController::class,'listLikes'])->name('likes.lists');
+            Route::get('matches', [MatchController::class,'listMatches'])->name('matches.lists');
+            Route::post('matches', [MatchController::class,'send'])->name('matches.send');
+
         });
 });
 
