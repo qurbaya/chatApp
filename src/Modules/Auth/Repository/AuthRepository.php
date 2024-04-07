@@ -7,12 +7,11 @@ namespace Modules\Modules\Auth\Repository;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Client;
 
-final readonly class AuthRepository
+class AuthRepository
 {
 
     public function find(string $phone, string $password): bool
     {
-
         return Auth::attempt(['phone' => $phone, 'password' => $password]);
     }
 

@@ -6,7 +6,7 @@ namespace Modules\Modules\Auth\Services;
 
 use Illuminate\Http\Request;
 
-final readonly class OAuthService
+class OAuthService
 {
 
 
