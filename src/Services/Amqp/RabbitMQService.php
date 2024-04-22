@@ -41,6 +41,9 @@ final class RabbitMQService
         $this->channel->basic_publish($msg, $this->exchange, $queue);
     }
 
+    /**
+     * @throws \ErrorException
+     */
     public function consume(string $queue, callable $callback): void
     {
         $this->createQueue($queue);
@@ -50,6 +53,9 @@ final class RabbitMQService
         $this->channel->consume();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function __destruct()
     {
         $this->channel->close();
@@ -58,7 +64,7 @@ final class RabbitMQService
 
     private function createQueue(string $queue):void
     {
-        $this->channel->queue_declare($queue, false, true, false, false);
+        $this->channel->queue_declare(queue: $queue, durable: true, auto_delete: false);
         $this->channel->queue_bind($queue, $this->exchange, $queue);
     }
 }

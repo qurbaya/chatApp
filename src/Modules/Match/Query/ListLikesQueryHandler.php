@@ -15,6 +15,6 @@ final readonly class ListLikesQueryHandler
 
     public function handle(ListLikesQuery $query): Collection
     {
-        return $this->repository->likes($query->getUserId());
+       return $this->repository->likes($query->getUserId());
     }
 }

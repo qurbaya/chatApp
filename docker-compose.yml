@@ -1,19 +1,18 @@
 version: '3.9'
 services:
 
+    lara-postgres:
+        image: postgres:16.2-alpine3.19
+        volumes:
+          - lara-postgres:/var/lib/postgresql/data
+        environment:
+          POSTGRES_USER: lara
+          POSTGRES_PASSWORD: lara
+          POSTGRES_DB: lara
+        ports:
+          - "54321:5432"
 
-  lara-postgres:
-    image: postgres:16.2-alpine3.19
-    volumes:
-      - lara-postgres:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: lara
-      POSTGRES_PASSWORD: lara
-      POSTGRES_DB: lara
-    ports:
-      - "54321:5432"
-
-  rabbitmq:
+    rabbitmq:
       image: rabbitmq:3.13.1-management-alpine
       ports:
           - "15672:15672"
@@ -21,6 +20,14 @@ services:
       volumes:
           - rabbitmq:/var/lib/rabbitmq
 
+    redis:
+      image: redis:alpine
+      volumes:
+          - redis-data:/data
+      ports:
+          - "6379:6379"
+
 volumes:
     lara-postgres:
     rabbitmq:
+    redis-data:

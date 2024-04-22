@@ -8,6 +8,7 @@ use Modules\Modules\Auth\Query\AuthQuery;
 use Modules\Modules\Auth\Query\AuthQueryHandler;
 use Modules\Modules\Auth\Repository\AuthRepository;
 use Modules\Modules\Auth\Services\OAuthService;
+use PHPUnit\Framework\MockObject\MockObject;
 use Tests\TestCase;
 
 class AuthQueryHandlerTest extends TestCase

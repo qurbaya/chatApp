@@ -26,7 +26,7 @@ class ReactionConsume extends Command
     /**
      * Execute the console command.
      */
-    public function handle(RabbitMQService $service, WriteReactionRepository $repository)
+    public function handle(RabbitMQService $service, WriteReactionRepository $repository): void
     {
         $service->consume('reaction',function ($msg) use ($repository) {
             DB::transaction(function () use ($msg, $repository) {
@@ -36,7 +36,6 @@ class ReactionConsume extends Command
                     $data['receiver_id'],
                     $data['reaction']
                 );
-                echo " [x] Done\n";
                 $msg->ack();
             });
 
